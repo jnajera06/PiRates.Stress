@@ -17,10 +17,27 @@ def predict():
     int_features = [int(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
-
+    '''
+    extract the model choosen
+    '''
+    m = request.form["model"]
+    
+    if m == '1':
+      model_sel = "K nearest neighbors "
+    elif m == '2':
+      model_sel = "Decision tree "
+    elif m == '3':
+      model_sel = "Random forest "
+    elif m == '4':
+      model_sel = "Neural network "
+    else:
+      model_sel = "Stack "
+    
     output = round(prediction[0], 2)
 
-    return render_template('index.html', prediction_text='The Stress Level is:   {} out of 5'.format(output))
+    return render_template('index.html', prediction_text= 'Based on model '+model_sel+ 'your stress Level is:   {} out of 5'.format(output))
+    
+
 
 @app.route('/predict_api',methods=['POST'])
 def predict_api():
