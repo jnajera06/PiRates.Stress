@@ -51,13 +51,13 @@ div {
 .login label {
     color: #fff;
     display: inline-block;
-    width: 60%;
+    width: 70%;
     font-size: 20px;
     text-align:left;
 }
 
 #fuel{
-    width: 40%; 
+    width: 30%; 
 	margin-bottom: 10px; 
 	padding: 10px;
 	font-size: 18px;

@@ -3,7 +3,7 @@ from flask import Flask, request, jsonify, render_template
 import pickle
 
 app = Flask(__name__)
-model = pickle.load(open('random_forest_Classifier_model.pkl', 'rb'))
+#model = pickle.load(open('random_forest_Classifier_model.pkl', 'rb'))
 
 @app.route('/')
 def home():
@@ -11,27 +11,35 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
+    
+    '''
+    extract the model choosen
+    '''
+    m = request.form["model"]
+        
+    if m == '1':
+      model_sel = "K nearest neighbors "
+      model = pickle.load(open('K_nearest_Neighbors_Classifier_model.pkl', 'rb'))
+    elif m == '2':
+      model_sel = "Decision tree "
+      model = pickle.load(open('Decision_tree_model.pkl', 'rb'))
+    elif m == '3':
+      model_sel = "Random forest "
+      model = pickle.load(open('random_forest_Classifier_model.pkl', 'rb'))
+    elif m == '4':
+      model_sel = "Neural network "
+      model = pickle.load(open('Neural_network_model.pkl', 'rb'))
+    else:
+      model_sel = "Stack "
+      model = pickle.load(open('Stack_model.pkl', 'rb'))
+      
     '''
     For rendering results on HTML GUI
     '''
     int_features = [int(x) for x in request.form.values()]
     final_features = [np.array(int_features)]
     prediction = model.predict(final_features)
-    '''
-    extract the model choosen
-    '''
-    m = request.form["model"]
-    
-    if m == '1':
-      model_sel = "K nearest neighbors "
-    elif m == '2':
-      model_sel = "Decision tree "
-    elif m == '3':
-      model_sel = "Random forest "
-    elif m == '4':
-      model_sel = "Neural network "
-    else:
-      model_sel = "Stack "
+  
     
     output = round(prediction[0], 2)
 
@@ -44,6 +52,8 @@ def predict_api():
     '''
     For direct API calls trought request
     '''
+    model = pickle.load(open('random_forest_Classifier_model.pkl', 'rb'))
+    
     data = request.get_json(force=True)
     prediction = model.predict([np.array(list(data.values()))])
 
