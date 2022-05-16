@@ -2,6 +2,8 @@ import numpy as np
 from flask import Flask, request, jsonify, render_template
 import pickle
 
+
+
 app = Flask(__name__)
 #model = pickle.load(open('random_forest_Classifier_model.pkl', 'rb'))
 
@@ -28,28 +30,7 @@ def predict():
     Q17_10 = int(request.form['Q17_10'])
 
         
-    if m == "1":
-      model_sel = "K nearest neighbors "
-      model = pickle.load(open('K_nearest_Neighbors_Classifier_model.pkl', 'rb'))
-    elif m == "2":
-      model_sel = "Decision tree "
-      model = pickle.load(open('Decision_tree_model.pkl', 'rb'))
-    elif m == "3":
-      model_sel = "Random forest "
-      model = pickle.load(open('random_forest_Classifier_model.pkl', 'rb'))
-    elif m == "4":
-      model_sel = "Neural network "
-      model = pickle.load(open('Neural_network_model.pkl', 'rb'))
-    elif m == "5":
-      model_sel = "Stack "
-      model = pickle.load(open('Stack_model.pkl', 'rb'))
-    else:
-     # model_sel = "Stack "
-      model = pickle.load(open('K_nearest_Neighbors_Classifier_model.pkl', 'rb'))
-      
-    '''
-    For rendering results on HTML GUI
-    '''
+    
     #int_features = [int(x) for x in request.form.values()]
     #final_features = [np.array(int_features)]
     #prediction = model.predict(final_features)
@@ -75,13 +56,35 @@ def predict():
     model_stack = pickle.load(open('Stack_model.pkl', 'rb'))
     pred_stack = model_stack.predict(final_features)
     output_stack = round(pred_stack[0], 2)
+    
+    if m == "1":
+      model_sel = "K nearest neighbors "
+      model = model_knn
+    elif m == "2":
+      model_sel = "Decision tree "
+      model = model_dt
+    elif m == "3":
+      model_sel = "Random forest "
+      model = model_rf
+    elif m == "4":
+      model_sel = "Neural network "
+      model = model_nn
+    elif m == "5":
+      model_sel = "Stack "
+      model = model_stack
+    else:
+      model = model_rf
       
+    
+    '''
+    For rendering results on HTML GUI
+    '''
     
     prediction = model.predict(final_features)
     #prediction = model.predict([[Q10_1,Q10_4,Q10_5,Q10_6,Q10_7,Q10_9,Q10_12,Q17_1,Q17_7,Q17_10]])     
     output = round(prediction[0], 2)
 
-    return render_template('index.html', prediction_text= 'Based on model '+model_sel+ 'your stress Level is:   {} out of 5'.format(output),
+    return render_template('prediction.html', prediction_text= 'Based on model '+model_sel+ 'your stress Level is:   {} out of 5'.format(output),
                            pred_knn ='stress Level {} out of 5'.format(output_knn),
                            pred_dt ='stress Level {} out of 5'.format(output_dt),
                            pred_rf ='stress Level {} out of 5'.format(output_rf),
@@ -92,4 +95,6 @@ def predict():
 
 if __name__ == "__main__":
     app.run(debug=True)# -*- coding: utf-8 -*-
+    
+   
 
