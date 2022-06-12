@@ -7,7 +7,7 @@ This project aims to be used to help and improve educational institutions. With 
 
 The use of CRISP-DM methodology on this project made possible to achieve the main goal
 proposed at the start. The predictions of stress levels in students enrolled in a higher
-education course have been predicted accurately by three different Machine Learning
+education course have been predicted accurately by five different Machine Learning
 Models.
 
 The results and findings of this research point out the need of providing students with
