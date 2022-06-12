@@ -15,6 +15,9 @@ alternative tools and solutions for managing academic stress. The prediction of 
 can help universities and colleges to identify and carry-out measures to a problem that has
 increased dramatically over time.
 
+![image](https://user-images.githubusercontent.com/61193940/173232433-c9291527-f60e-4b64-a704-616cac6105f5.png)
+
+
 The findings of the prediction also aim to reduce withdrawal from institutions due to academic
 stress. It is important to help students to stay motivated and keep working on their course,
 without putting to waste the progress already obtained.
