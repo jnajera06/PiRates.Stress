@@ -15,6 +15,12 @@ alternative tools and solutions for managing academic stress. The prediction of 
 can help universities and colleges to identify and carry-out measures to a problem that has
 increased dramatically over time.
 
+![image](https://user-images.githubusercontent.com/61193940/188315928-a50ed3e6-f912-4753-aa06-816ab7461ea5.png)
+
+
+![image](https://user-images.githubusercontent.com/61193940/188315907-dfa82ea3-e3ee-4a13-8e52-47de3b7b33b4.png)
+
+
 ![image](https://user-images.githubusercontent.com/61193940/173232433-c9291527-f60e-4b64-a704-616cac6105f5.png)
 
 
